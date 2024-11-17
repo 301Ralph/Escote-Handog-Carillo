@@ -12,11 +12,7 @@
         @foreach ($products as $product)
             <a href="{{ route('products.show', $product->id) }}">
                 <div class="product-card">
-                    <img 
-                        src="{{ asset('images/' . ($product->image ?? 'default.jpg')) }}" 
-                    alt="{{ $product->name }}" 
-                    class="view-product-image"
-                    >
+                    <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
                     <div class="product-info">
                         <h3>{{ $product->name }}</h3>
                         <p class="product-price">$ {{ number_format($product->price, 2) }}</p>
@@ -37,10 +33,9 @@
         @endif
     </div>
 
-
     <!-- Add Product Button -->
-    <a href="{{ route('products.create') }}" class="floating-add-btn  ">
-        <i class="fa fa-shopping-cart"> Add Product</i>
+    <a href="{{ route('products.create') }}" class="floating-add-btn">
+        <i class="fa fa-shopping-cart"></i> Add Product
     </a>
 @endsection
 

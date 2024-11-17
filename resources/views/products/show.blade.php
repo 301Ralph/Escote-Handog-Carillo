@@ -1,4 +1,3 @@
-<!-- resources/views/products/show.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -8,13 +7,9 @@
             <div class="product-details text-center">
                 <h2>{{ $product->name }}</h2>
 
-                <!-- Product Image -->
-                <img 
-                src="{{ asset('images/' . ($product->image ?? 'default.jpg')) }}" 
-                    alt="{{ $product->name }}" 
-                    class="view-product-image"
-                >
-
+                <!-- Default Product Image -->
+                <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="view-product-image">
+                
                 <!-- Product Information -->
                 <p><strong>Price:</strong> ${{ number_format($product->price, 2) }}</p>
                 <p><strong>Description:</strong> {{ $product->description }}</p>

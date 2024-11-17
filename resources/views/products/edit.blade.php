@@ -1,4 +1,3 @@
-<!-- resources/views/products/edit.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -11,7 +10,7 @@
                 <h2>Edit Product</h2>
 
                 <!-- Edit Product Form -->
-                <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('products.update', $product->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -19,12 +18,6 @@
                     <div class="form-group">
                         <label for="name">Product Name:</label>
                         <input type="text" id="name" name="name" value="{{ old('name', $product->name) }}" required>
-                    </div>
-
-                    <!-- Product Image -->
-                    <div class="form-group">
-                        <label for="image">Upload New Image (Optional):</label>
-                        <input type="file" id="image" name="image">
                     </div>
 
                     <!-- Product Price -->

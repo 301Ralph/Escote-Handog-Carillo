@@ -9,7 +9,7 @@
             <h2>Add Product</h2>
 
             <!-- Product Form -->
-            <form action="{{ route('products.store') }}" method="POST" id="addProductForm">
+            <form action="{{ route('products.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="productName">Product Name</label>
@@ -35,32 +35,13 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="image">Select Image:</label>
-                    @php
-                        use Illuminate\Support\Facades\File;
-                        $files = File::files(public_path('images')); // List all images in the public/images folder
-                    @endphp
-
-                    <select id="image" name="image" required onchange="updateImagePreview()">
-                        <option value="default.jpg" {{ old('image') == 'default.jpg' ? 'selected' : '' }}>Default Image</option>
-                        @foreach ($files as $file)
-                            @php
-                                $imageName = $file->getFilename();  // Get the filename of each image
-                            @endphp
-                            <option value="{{ $imageName }}" {{ old('image') == $imageName ? 'selected' : '' }}>{{ ucfirst(pathinfo($imageName, PATHINFO_FILENAME)) }}</option>
-                        @endforeach
+                <div class="mb-3">
+                    <label for="image" class="form-label">Choose Image</label>
+                    <select class="form-control" id="image" name="image" required>
+                        <option value="image1.jpg">Image 1</option>
+                        <option value="image2.jpg">Image 2</option>
+                        <option value="image3.jpg">Image 3</option>
                     </select>
-
-                    @error('image')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <!-- Image Preview -->
-                <div class="form-group">
-                    <label>Image Preview:</label>
-                    <img id="imagePreview" src="{{ asset('images/' . (old('image') ?? 'default.jpg')) }}" alt="Image Preview" style="width: 150px; height: auto;">
                 </div>
 
                 <div class="modal-footer">
@@ -73,10 +54,10 @@
 
 @section('scripts')
     <script>
-        function updateImagePreview() {
-            const selectedImage = document.getElementById('image').value;
-            const previewImage = document.getElementById('imagePreview');
-            previewImage.src = `/images/${selectedImage}`;
+        function showSuccessMessage() {
+            alert("Product added successfully!");
+            return true; // Continue with form submission
         }
     </script>
 @endsection
+

@@ -13,8 +13,8 @@
     <div class="container">
         @yield('content')
     </div>
-
-    @yield('scripts') <!-- This will allow us to add scripts from specific views if needed -->
+    
+    @yield('scripts')
 
 </body>
 </html>
